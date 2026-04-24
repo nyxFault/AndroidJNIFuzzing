@@ -1,5 +1,13 @@
 # AndroidJNIFuzzing
 
+![License](https://img.shields.io/github/license/nyxFault/AndroidJNIFuzzing?style=for-the-badge)
+![AFL++](https://img.shields.io/badge/AFL++-4.06c-orange?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Android%20arm64-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![Mode](https://img.shields.io/badge/Fuzzing-Frida%20Persistent-blue?style=for-the-badge)
+[![Target App](https://img.shields.io/badge/Target-FuzzMeApp-6f42c1?style=for-the-badge)](https://github.com/nyxFault/FuzzMeApp)
+![Stars](https://img.shields.io/github/stars/nyxFault/AndroidJNIFuzzing?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/nyxFault/AndroidJNIFuzzing?style=for-the-badge)
+
 Reusable harness pack to reproduce Android JNI fuzzing with AFL++ Frida mode on a rooted device.
 
 This repo contains:
@@ -47,11 +55,15 @@ Expected exported function:
 void fuzzMe(const uint8_t *buffer, uint64_t length);
 ```
 
-Copy:
+For this demo, I used [`FuzzMeApp`](https://github.com/nyxFault/FuzzMeApp) as the target app.
+
+Example using released `FuzzMeApp` debug APK:
 
 ```bash
+wget -O app-debug.apk https://github.com/nyxFault/FuzzMeApp/releases/download/v1.0.0/app-debug.apk
+apktool d app-debug.apk -o fuzzmeapp_apk_out
 mkdir -p harness/lib
-cp /path/to/libfuzzme.so harness/lib/
+cp fuzzmeapp_apk_out/lib/arm64-v8a/libfuzzme.so harness/lib/
 ```
 
 ### 3) Build harness for Android arm64
